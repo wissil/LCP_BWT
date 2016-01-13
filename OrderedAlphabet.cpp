@@ -13,9 +13,7 @@ OrderedAlphabet::OrderedAlphabet(csa_bitcompressed<> csa) {
         symbols.push_back(current);
         size += 1;
     }
-
 }
-
 //! Public destructor
 OrderedAlphabet::~OrderedAlphabet() {
 }
