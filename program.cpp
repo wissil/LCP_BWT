@@ -13,8 +13,8 @@ using namespace sdsl;
 
 string BWT;
 string orderedAlphabet;
-//wt_huff<rrr_vector<63>> wt;
-wt_huff<> wt;
+wt_huff<rrr_vector<63>> wt;
+//wt_huff<> wt;
 
 //List of overal number of occurences of characters in string S which are strictly
 //smaller than c, for each c in alphabet
