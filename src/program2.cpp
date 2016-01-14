@@ -32,13 +32,6 @@ struct QueueElement {
         int l;
 };
 
-//Data structure for queue elements
-struct QueueElementNew {
-        Interval interval;
-	int size;
-        int l;
-};
-
 string uniqueCharsInInterval(Interval interval) {
     /*set<char> s;
     unsigned size = interval.end - interval.start;
