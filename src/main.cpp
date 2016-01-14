@@ -23,6 +23,7 @@
 #include <iterator>
 
 #include <sdsl/lcp.hpp>
+#include <signal.h>
 
 
 
@@ -72,7 +73,7 @@ std::vector<index_type> run(IRank *rank, OrderedAlphabet a, std::string BWT);
  */
 int main(int argc, char* argv[]){
     
-    //signal(SIGSEGV, handler);
+    signal(SIGSEGV, handler);
     
     std::string input;
     std::string inFileName = argv[1];
@@ -229,17 +230,37 @@ std::map<symbol_type, occurence_type> calculateC(IRank *rank,
 }
 
 
+
 //! Generate a BWT transformation string
+//BWT[i] = S[SA[i]−1] for all i with SA[i]=0 and BWT[i]='\0'
 /*!
  *  \param csa  Suffix Array of a given sequence
  */
 std::string generateBWT(csa_bitcompressed<> csa) {
+    symbol_type sentinel_symbol = csa.comp2char[0];
+    std::string s = extract(csa, 0, csa.size()-1);
+    std::string bwt;
+    for(int i=0; i<csa.bwt.size(); i++) {
+        if(csa[i] == 0) {
+            bwt.push_back(sentinel_symbol);
+        } else {
+            bwt.push_back(s[csa[i] - 1]);
+        }
+    }
+    return bwt;
+}
+
+//! Generate a BWT transformation string
+/*!
+ *  \param csa  Suffix Array of a given sequence
+ */
+/*std::string generateBWT(csa_bitcompressed<> csa) {
     std::string bwt;
     for(int i=0; i<csa.bwt.size(); i++) {
         bwt.push_back(csa.bwt[i]);
     }
     return bwt;
-}
+}*/
 
 
 //! Read an entire text file to memory
