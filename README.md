@@ -7,7 +7,7 @@ http://www.fer.unizg.hr/predmet/bio/
 # Installation
 
 1) Install the [SDSL][SDSL] library. 
-   This library contains succint data structures that are by this program.
+   This library contains succint data structures that are used by this program.
    To download and install [SDSL][SDSL] library use the following instructions.
    ```sh
   git clone https://github.com/simongog/sdsl-lite.git
@@ -32,16 +32,16 @@ http://www.fer.unizg.hr/predmet/bio/
 
   a) run with Binary Wavelet Tree
   ```sh
-  ./program inputs/ecoli.fa b_wt
+  ./program inputs/input100.txt b_wt
   ```
   b) run without the Wavelet Tree implementation
    ```sh
-  ./program inputs/ecoli.fa non_wt
+  ./program inputs/input100.txt non_wt
   ```
   
   c) run with Multiary Wavelet Tree, n = 4
    ```sh
-   ./program inputs/ecoli.fa m_wt 4
+   ./program inputs/input100.txt m_wt 4
    ```
 
 

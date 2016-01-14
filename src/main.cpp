@@ -86,7 +86,7 @@ int main(int argc, char* argv[]){
     
     // Variable used only for multiary Wavelet tree
     // It is passed as the 4th argument to main, only if string m_wt is inputed
-    int ary = 1;
+    int ary = 2;
     
     if(option.compare("m_wt") == 0) {
         ary = atoi(argv[3]);
