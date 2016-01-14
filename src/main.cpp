@@ -72,7 +72,7 @@ std::vector<index_type> run(IRank *rank, OrderedAlphabet a, std::string BWT);
  */
 int main(int argc, char* argv[]){
     
-    signal(SIGSEGV, handler);
+    //signal(SIGSEGV, handler);
     
     std::string input;
     std::string inFileName = argv[1];
