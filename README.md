@@ -38,7 +38,8 @@ http://www.fer.unizg.hr/predmet/bio/
     ```sh
   ./program input.txt non_wt
   ```
+  
   c) run with Multiary Wavelet Tree, n = 4
      ```sh
-     ./program input.txt m_wt 4
-     ```
+   ./program input.txt m_wt 4
+   ```
