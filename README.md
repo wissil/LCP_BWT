@@ -32,14 +32,14 @@ http://www.fer.unizg.hr/predmet/bio/
 
   a) run with Binary Wavelet Tree
   ```sh
-  ./program input.txt b_wt
+  ./program inputs/ecoli.fa b_wt
   ```
   b) run without the Wavelet Tree implementation
    ```sh
-  ./program input.txt non_wt
+  ./program inputs/ecoli.fa non_wt
   ```
   
   c) run with Multiary Wavelet Tree, n = 4
    ```sh
-   ./program input.txt m_wt 4
+   ./program inputs/ecoli.fa m_wt 4
    ```
