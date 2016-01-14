@@ -8,6 +8,8 @@
 #include <sdsl/vectors.hpp>
 #include <sdsl/suffix_arrays.hpp>
 #include <sdsl/wavelet_trees.hpp>
+#include <signal.h>
+#include <execinfo.h>
 
 using namespace std;
 using namespace sdsl;
@@ -20,6 +22,19 @@ string orderedAlphabet;
 //List of overal number of occurences of characters in string S which are strictly
 //smaller than c, for each c in alphabet
 vector<int> C;
+
+void handler(int sig) {
+    void *array[10];
+    int size;
+    
+    // get void*'s for all entries on the stack
+    size = backtrace(array, 10);
+    
+    // print out all the frames to stderr
+    fprintf(stderr, "Error: signal %d:\n", sig);
+    backtrace_symbols_fd(array, size, STDERR_FILENO);
+    exit(EXIT_FAILURE);
+}
 
 //Data structure for intervals
 struct Interval {
@@ -53,7 +68,7 @@ string uniqueCharsInInterval(Interval interval) {
     }
     string uniqueChars;
     uniqueChars.assign(s.begin(), s.end());
-    cout << uniqueChars << endl;
+    //cout << uniqueChars << endl;
     return uniqueChars;
 }
 
@@ -70,7 +85,7 @@ vector<Interval> getIntervals(Interval interval, node* root, int ary) {
         int b = rnk(interval.end, uniqueChars[i], root, ary);
 
         int charIndex = orderedAlphabet.find(uniqueChars[i]);
-        cout << "c:" << C[charIndex] << endl;
+        //cout << "c:" << C[charIndex] << endl;
         Interval newInterval;
         newInterval.start = a + C[charIndex] +1;
         newInterval.end = b + C[charIndex];
@@ -81,11 +96,13 @@ vector<Interval> getIntervals(Interval interval, node* root, int ary) {
 
 int main(int argc, char* argv[]){
 
+ signal(SIGSEGV, handler);
     //Loading data from file
 	if (argc < 2) {
         cout << "Usage: " << argv[0] << " file" << endl;
         return 1;
     }
+	cout << argv[1]<< endl;
 	string input;
 	string line;
 	ifstream myfile;
@@ -99,6 +116,9 @@ int main(int argc, char* argv[]){
   	else
 		cout << "Unable to open file";
 
+cout << "argv[2]" << endl;
+
+	int ary = atoi(argv[2]);;
     clock_t begin = clock();
 
 	//Generating suffix array with sdsl library
@@ -133,11 +153,11 @@ int main(int argc, char* argv[]){
 	string BWTh(BWTc);
 
     BWT = BWTh;
-
+	
 	//Generating wavelet tree from BWT with sdsl library
 	//construct_im(wt, BWT, 1);
 	//Generating multiary wavelet tree
-	node* wt = generateMultiaryWT(BWT, 4);
+	node* wt = generateMultiaryWT(BWT, ary);
 
     //Counting overal number of occurences of characters in string S which are strictly
     //smaller than c, for each c in alphabet
@@ -146,7 +166,7 @@ int main(int argc, char* argv[]){
             C.push_back(0);
         }
         else {
-            int r = C[i-1] + rnk(BWT.length(), orderedAlphabet[i-1], wt, 4);
+            int r = C[i-1] + rnk(BWT.length(), orderedAlphabet[i-1], wt, ary);
             C.push_back(r);
         }
     }
@@ -176,9 +196,9 @@ int main(int argc, char* argv[]){
         element = queueLCP.front();
         queueLCP.pop();
 
-        vector<Interval> intervals = getIntervals(element.interval, wt, 4);
+        vector<Interval> intervals = getIntervals(element.interval, wt, ary);
         for(vector<Interval>::iterator it = intervals.begin(); it != intervals.end(); ++it) {
-        cout << "["<<it->start << ".." << it->end << "], " << element.l <<endl;
+        //cout << "["<<it->start << ".." << it->end << "], " << element.l <<endl;
             if(LCP[it->end] == -2) {
                 QueueElement newElement;
                 newElement.interval = *it;
@@ -190,13 +210,13 @@ int main(int argc, char* argv[]){
         }
     }
 
-    cout << LCP << endl;
+    //cout << LCP << endl;
 
     clock_t end = clock();
     //for(vector<int>::iterator it = LCP.begin(); it != LCP.end(); ++it) {
     //   cout << *it << " ";
     //}
-    cout << endl;
+    //cout << endl;
 
 
     double elapsed_secs = double(end-begin) / CLOCKS_PER_SEC;
