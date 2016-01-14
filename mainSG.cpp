@@ -23,7 +23,7 @@ using namespace sdsl;
 int main(int argc, char* argv[]){ 
 	string file = argv[1];
 	
-	cache_config cc = false;
+	cache_config cc = true;
 	csa_wt<> csa;
 	construct(csa, file, 1);
 
