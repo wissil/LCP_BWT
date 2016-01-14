@@ -28,16 +28,13 @@ int main(int argc, char* argv[]){
 	construct(csa, file, 1);
 
 	cc.delete_files = true;
-	lcp_wt<> lcp;
-
-	
+	lcp_wt<> LCP;
 
 	 // Algorithm run: Start measuring time
     chrono::high_resolution_clock::time_point t1 = chrono::high_resolution_clock::now();
     
     // START THE ALGORITHM
-    construct(lcp, file, 1);
-	cout << lcp << endl;
+    construct(LCP, file, 1);
 	
     // Algorithm stop: Stop measuring time
     chrono::high_resolution_clock::time_point t2 = chrono::high_resolution_clock::now();
@@ -61,5 +58,13 @@ int main(int argc, char* argv[]){
         getrusage(RUSAGE_SELF, &usage);
         cout << "Memory usage: "<< usage.ru_maxrss/((float)1024) << " MB of RAM" << endl;
     }
-}
+
+	// get inFile name with no extension
+    std::string filename = "./";
+    filename.append(file.substr(0, file.find(".")));
+    // append it with output extension
+    filename.append("_lcp_SG_out.txt");
+    std::ofstream output_file(filename);
+    std::ostream_iterator<index_type> output_iterator(output_file, " ");
+    std::copy(LCP.begin(), LCP.end(), output_iterator);
 }
