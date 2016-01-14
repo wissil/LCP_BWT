@@ -4,7 +4,7 @@
 std::vector<index_type> Algorithm2A::calculateLCP(std::string BWT) {
     std::vector<index_type> LCP;
     
-    LCP.push_back(-1);
+    LCP.push_back(1);
     for(int i=0; i<BWT.size()-1; i++) {
         LCP.push_back(-2);
     }
