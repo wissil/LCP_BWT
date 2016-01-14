@@ -1,3 +1,4 @@
-g++ -std=c++11 -O3 -DNDEBUG -I ~/include -L ~/lib main.cpp OrderedAlphabet.cpp WTRank.cpp Algorithm1A.cpp Algorithm2A.cpp -o program -lsdsl -ldivsufsort -ldivsufsort64
+g++ -std=c++11 -O3 -DNDEBUG -I ~/include -L ~/lib main.cpp OrderedAlphabet.cpp WTRank.cpp Algorithm1A.cpp Algorithm2A.cpp LinRank.cpp MultiWTRank.cpp -o program -lsdsl -ldivsufsort -ldivsufsort64
 
-g++ -std=c++11 -O3 -DNDEBUG -I ~/include -L ~/lib mainSG.cpp OrderedAlphabet.cpp WTRank.cpp Algorithm1A.cpp Algorithm2A.cpp -o program -lsdsl -ldivsufsort -ldivsufsort64
+g++ -std=c++11 -O3 -DNDEBUG -I ~/include -L ~/lib mainSG.cpp OrderedAlphabet.cpp WTRank.cpp Algorithm1A.cpp Algorithm2A.cpp LinRank.cpp MultiWTRank.cpp -o program -lsdsl -ldivsufsort -ldivsufsort64
+
