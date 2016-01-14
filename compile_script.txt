@@ -1,0 +1,1 @@
+g++ -std=c++11 -O3 -DNDEBUG -Wno-inconsistent-missing-override -I /Users/apple/Desktop/Toster/include -L /Users/apple/Desktop/Toster/lib main.cpp OrderedAlphabet.cpp WTRank.cpp Algorithm1A.cpp Algorithm2A.cpp -o program -lsdsl -ldivsufsort -ldivsufsort64
