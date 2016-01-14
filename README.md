@@ -35,11 +35,11 @@ http://www.fer.unizg.hr/predmet/bio/
   ./program input.txt b_wt
   ```
   b) run without the Wavelet Tree implementation
-    ```sh
+   ```sh
   ./program input.txt non_wt
   ```
   
   c) run with Multiary Wavelet Tree, n = 4
-     ```sh
+   ```sh
    ./program input.txt m_wt 4
    ```
