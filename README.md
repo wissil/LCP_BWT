@@ -6,9 +6,9 @@ http://www.fer.unizg.hr/predmet/bio/
 
 # Installation
 
-1) Install the SDSL library. 
+1) Install the [SDSL][SDSL] library. 
    This library contains succint data structures that are by this program.
-   To download and install SDSL library use the following instructions.
+   To download and install [SDSL][SDSL] library use the following instructions.
    ```sh
   git clone https://github.com/simongog/sdsl-lite.git
   cd sdsl-lite
@@ -43,3 +43,6 @@ http://www.fer.unizg.hr/predmet/bio/
    ```sh
    ./program inputs/ecoli.fa m_wt 4
    ```
+
+
+[SDSL]: https://github.com/simongog/sdsl-lite/ "Succinct Data Structure Library"
